@@ -39,7 +39,10 @@ const TIMEOUT = 10000;
 
 app.use(bodyParser.urlencoded({ extended: "false" }));
 app.use(bodyParser.json());
-
+app.use(function(req,res,next){
+  console.log(`${req.method} ${req.path} - ${req.ip}`)
+  next()
+})
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
